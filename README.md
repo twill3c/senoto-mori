@@ -6,7 +6,7 @@ Web サイト制作のポートフォリオとしてつくっています。
 > **この施設は実在しません。** 予約は成立せず、掲載している所在地・料金・区画・お知らせは
 > すべて架空です。フッタ・`/about`・`/reserve` の三か所に同じ注記を置いています。
 
-本番: https://senoto-mori.vercel.app ／ 設計の正本: [SPEC.md](SPEC.md) ／ 検証の正本: [TEST_SPEC.md](TEST_SPEC.md)
+本番: https://senoto-mori.vercel.app(**公開待ち** — Vercel の日次デプロイ上限に当たったため 2026-08-28 以降に反映)／ 設計の正本: [SPEC.md](SPEC.md) ／ 検証の正本: [TEST_SPEC.md](TEST_SPEC.md)
 
 ## 何をしているサイトか
 
