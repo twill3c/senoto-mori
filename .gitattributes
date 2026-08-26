@@ -1,0 +1,5 @@
+# 改行の自動変換を止める。作業機は Windows だが、リポジトリは LF で持つ。
+* text=auto eol=lf
+
+# 内閣府の祝日 CSV は Shift_JIS の原本。出所の証拠なので一切変換しない
+data/syukujitsu.csv -text
