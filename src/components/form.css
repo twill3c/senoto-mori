@@ -1,0 +1,125 @@
+/* 申込フォームと確認画面。色は globals.css のトークン経由(G-09) */
+
+.form {
+  max-width: 32rem;
+  margin: 0 0 2rem;
+}
+
+.field {
+  margin: 0 0 1.2rem;
+}
+
+.field label {
+  display: block;
+  font-size: 0.82rem;
+  letter-spacing: 0.08em;
+  color: var(--ink-soft);
+  margin-bottom: 0.35em;
+}
+
+.field input[type="text"],
+.field input[type="email"],
+.field input[type="date"],
+.field input[type="number"],
+.field select,
+.field textarea {
+  font: inherit;
+  font-size: 0.94rem;
+  width: 100%;
+  padding: 0.5em 0.65em;
+  background: var(--bg-raised);
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.field textarea {
+  resize: vertical;
+  line-height: 1.7;
+}
+
+.field[data-invalid="true"] input,
+.field[data-invalid="true"] select,
+.field[data-invalid="true"] textarea {
+  border-color: var(--ember);
+  border-width: 2px;
+}
+
+.field__hint {
+  margin: 0.4em 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.field__error {
+  margin: 0.4em 0 0;
+  font-size: 0.82rem;
+  color: var(--ember);
+  font-weight: 500;
+}
+
+.field--check {
+  display: grid;
+  grid-template-columns: auto minmax(0, 1fr);
+  gap: 0.2em 0.6em;
+  align-items: start;
+  margin-bottom: 1rem;
+}
+
+.field--check input {
+  margin-top: 0.45em;
+  width: 1rem;
+  height: 1rem;
+  accent-color: var(--ember);
+}
+
+.field--check label {
+  margin: 0;
+  font-size: 0.88rem;
+  letter-spacing: 0.02em;
+  color: var(--ink);
+}
+
+.field--check .field__error {
+  grid-column: 1 / -1;
+}
+
+.form__row {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(7rem, 1fr));
+  gap: 0 1rem;
+}
+
+.button {
+  font: inherit;
+  font-size: 0.94rem;
+  display: inline-block;
+  padding: 0.6em 1.6em;
+  background: var(--ember);
+  color: var(--bg-raised);
+  border: 1px solid var(--ember);
+  border-radius: var(--radius);
+  cursor: pointer;
+  text-decoration: none;
+}
+
+.button:hover {
+  filter: brightness(1.08);
+}
+
+.button:disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.form__foot {
+  margin: 0.8em 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+}
+
+.confirm tfoot th,
+.confirm tfoot td {
+  border-top: 2px solid var(--border-strong);
+  border-bottom: 0;
+}

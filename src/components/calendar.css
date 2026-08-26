@@ -1,0 +1,170 @@
+/* 空きカレンダー。色は globals.css のトークン経由(G-09) */
+
+.cal {
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+  padding: 0.9rem 1rem 1.1rem;
+  margin: 0 0 2rem;
+}
+
+.cal[data-loading="true"] {
+  opacity: 0.55;
+}
+
+.cal__head {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 0.6rem;
+  margin-bottom: 0.8rem;
+}
+
+.cal__head button {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.3em 0.7em;
+  background: none;
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+  color: var(--ink-soft);
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.cal__head button:hover:not(:disabled) {
+  border-color: var(--ember);
+  color: var(--ink);
+}
+
+.cal__head button:disabled {
+  opacity: 0.4;
+  cursor: default;
+}
+
+.cal__title {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  margin: 0;
+}
+
+.cal__grid {
+  display: grid;
+  grid-template-columns: repeat(7, minmax(0, 1fr));
+  gap: 2px;
+}
+
+.cal__weekday {
+  font-size: 0.7rem;
+  text-align: center;
+  color: var(--ink-faint);
+  padding-bottom: 0.3em;
+}
+
+.cal__blank {
+  min-height: 2.6rem;
+}
+
+.cal__day {
+  font: inherit;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 0.1em;
+  min-height: 2.6rem;
+  padding: 0.25em 0.1em;
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  background: var(--bg);
+  color: var(--ink);
+  cursor: pointer;
+  text-align: center;
+}
+
+.cal__num {
+  font-size: 0.82rem;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+}
+
+.cal__mark {
+  font-size: 0.62rem;
+  letter-spacing: 0.02em;
+  line-height: 1.2;
+  color: var(--ink-faint);
+}
+
+.cal__day[data-density="ample"] {
+  border-color: var(--ok);
+}
+
+.cal__day[data-density="ample"] .cal__mark {
+  color: var(--ok);
+}
+
+.cal__day[data-density="few"] {
+  border-color: var(--warn);
+}
+
+.cal__day[data-density="few"] .cal__mark {
+  color: var(--warn);
+}
+
+.cal__day[data-density="full"] {
+  background: var(--bg-sunk);
+  border-color: var(--border);
+}
+
+.cal__day[data-density="full"] .cal__num,
+.cal__day[data-density="full"] .cal__mark {
+  color: var(--full);
+}
+
+.cal__day[data-peak="true"] .cal__num {
+  font-weight: 600;
+  text-decoration: underline;
+  text-decoration-color: var(--ember);
+  text-underline-offset: 0.2em;
+}
+
+.cal__day[aria-pressed="true"] {
+  outline: 2px solid var(--ember);
+  outline-offset: -2px;
+}
+
+.cal__day--closed {
+  background: var(--bg-sunk);
+  color: var(--ink-faint);
+  cursor: default;
+  border-style: dashed;
+}
+
+.cal__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.3rem 1rem;
+  margin: 0.9em 0 0;
+  font-size: 0.74rem;
+  color: var(--ink-faint);
+}
+
+.cal__legend span::before {
+  content: "■ ";
+}
+
+.cal__legend span[data-density="ample"]::before {
+  color: var(--ok);
+}
+
+.cal__legend span[data-density="few"]::before {
+  color: var(--warn);
+}
+
+.cal__legend span[data-density="full"]::before {
+  color: var(--full);
+}
+
+.cal__legend span[data-peak="true"]::before {
+  content: "_ ";
+  color: var(--ember);
+}

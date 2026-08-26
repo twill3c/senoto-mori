@@ -1,0 +1,29 @@
+/* 季節バナー。色は globals.css のトークン経由(G-09) */
+
+.season {
+  border: 1px solid var(--border-strong);
+  border-left: 3px solid var(--ember);
+  background: var(--bg-raised);
+  padding: 0.9rem 1.1rem 1rem;
+  margin: 0 0 2rem;
+  max-width: var(--measure);
+}
+
+.season[data-phase="after"],
+.season[data-phase="before"] {
+  border-left-color: var(--river);
+  background: var(--bg-sunk);
+}
+
+.season__lead {
+  font-family: var(--font-serif);
+  font-size: 1.02rem;
+  margin: 0 0 0.4em;
+}
+
+.season__sub {
+  font-size: 0.86rem;
+  line-height: 1.8;
+  color: var(--ink-soft);
+  margin: 0;
+}

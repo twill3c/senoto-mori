@@ -1,9 +1,13 @@
 import Link from "next/link";
 import { Page } from "@/components/Page";
+import { SeasonBanner } from "@/components/SeasonBanner";
 import { guideTable } from "@/data/climate";
 import { SITE_TYPES, type SiteType } from "@/data/sites";
 import { routeOf } from "@/lib/routes";
-import { seasonRange } from "@/lib/season";
+import { seasonRange, toISODate } from "@/lib/season";
+
+// ISR。季節の表示が「今日」に依存するので、一時間ごとに焼き直す(F-08 / N-04)
+export const revalidate = 3600;
 
 const TYPE_ORDER: SiteType[] = ["seoto", "komore", "hidamari", "solo", "takibi"];
 
@@ -23,6 +27,8 @@ export default function Home() {
       title="水音のいちばん近くで眠る"
       lede={routeOf("/")?.lede}
     >
+      <SeasonBanner todayISO={toISODate(new Date())} />
+
       <div className="prose">
         <p>
           東の縁を瀬音川が流れ、西半分は落葉樹の森、北東が草原です。四十の区画は、

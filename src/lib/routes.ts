@@ -96,6 +96,12 @@ export const ROUTES: readonly Route[] = [
     group: "about",
   },
   {
+    path: "/preview/offseason",
+    title: "閉場期間の表示",
+    lede: "12 月から 4 月中旬までのトップページ。その時期を待たずに確かめられるようにしています。",
+    group: "about",
+  },
+  {
     path: "/about",
     title: "この場について",
     lede: "架空のキャンプ場です。制作の意図と、参考にした土地のこと。",
