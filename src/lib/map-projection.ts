@@ -51,3 +51,38 @@ export function projectPolyline(line: readonly Point[]): string {
   const pts = line.map(projectPoint);
   return pts.map((v, i) => `${i === 0 ? "M" : "L"} ${v.x} ${v.y}`).join(" ");
 }
+
+/** 施設の注記の体裁。map.css の .gmap__facility-label と一致させる */
+export const FACILITY_LABEL = {
+  fontSize: 8,
+  /** 点から文字の始まりまでの間隔 */
+  offsetX: 6,
+  /** 文字の縦位置の補正 */
+  baselineY: 3,
+} as const;
+
+/** 全角は 1 em、半角は 0.6 em として文字列の幅を見積もる */
+function textWidth(s: string, fontSize: number): number {
+  let em = 0;
+  for (const ch of s) {
+    const code = ch.codePointAt(0) ?? 0;
+    em += code < 0x100 ? 0.6 : 1;
+  }
+  return em * fontSize;
+}
+
+/**
+ * 施設の注記が占める矩形(中心指定・メートル)。
+ * 厳密な字形は環境で変わるので、あくまで見積もり。T-108 が重なりの検査に使う。
+ */
+export function labelBox(f: { label: string; at: Point }): Rect {
+  const w = textWidth(f.label, FACILITY_LABEL.fontSize);
+  const h = FACILITY_LABEL.fontSize * 1.25;
+  return {
+    x: f.at.x + FACILITY_LABEL.offsetX + w / 2,
+    // SVG では y が下向きなので、メートル座標では文字は点より下(y が小さい側)に出る
+    y: f.at.y - FACILITY_LABEL.baselineY + h / 2 - h / 2,
+    w,
+    h,
+  };
+}

@@ -170,3 +170,51 @@
   color: var(--ink-faint);
   margin: 0;
 }
+
+/* 図のタイプ別の塗り分けに対応する凡例。色は map.css と同じトークンを引く */
+.explorer__legend {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem 0.8rem;
+  margin: 0 0 1.1rem;
+  padding-bottom: 0.9rem;
+  border-bottom: 1px solid var(--border);
+  font-size: 0.74rem;
+  color: var(--ink-soft);
+}
+
+.explorer__legend span::before {
+  content: "■ ";
+}
+
+.explorer__legend span[data-type="seoto"]::before {
+  color: var(--river);
+}
+
+.explorer__legend span[data-type="komore"]::before {
+  color: var(--forest);
+}
+
+.explorer__legend span[data-type="hidamari"]::before {
+  color: var(--meadow);
+}
+
+.explorer__legend span[data-type="solo"]::before {
+  content: "□ ";
+  color: var(--ink-soft);
+}
+
+.explorer__legend span[data-type="takibi"]::before {
+  color: var(--ember);
+}
+
+.explorer__none {
+  margin: 0 0 0.8rem;
+  padding: 0.7rem 0.9rem;
+  border-left: 3px solid var(--ember);
+  background: var(--bg-sunk);
+  font-size: 0.84rem;
+  line-height: 1.75;
+  color: var(--ink-soft);
+  max-width: var(--measure);
+}

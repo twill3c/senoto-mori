@@ -81,6 +81,7 @@ export function GroundMapSvg({
               key={p.id}
               data-site-id={p.id}
               data-dim={dim ? "true" : "false"}
+              data-type={p.type}
               data-status={status}
               data-selected={selected === p.id ? "true" : "false"}
               className="gmap__pitch"

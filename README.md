@@ -6,7 +6,7 @@ Web サイト制作のポートフォリオとしてつくっています。
 > **この施設は実在しません。** 予約は成立せず、掲載している所在地・料金・区画・お知らせは
 > すべて架空です。フッタ・`/about`・`/reserve` の三か所に同じ注記を置いています。
 
-本番: (L4 で公開予定) ／ 設計の正本: [SPEC.md](SPEC.md) ／ 検証の正本: [TEST_SPEC.md](TEST_SPEC.md)
+本番: https://senoto-mori.vercel.app ／ 設計の正本: [SPEC.md](SPEC.md) ／ 検証の正本: [TEST_SPEC.md](TEST_SPEC.md)
 
 ## 何をしているサイトか
 
@@ -36,6 +36,8 @@ Web サイト制作のポートフォリオとしてつくっています。
 | **G-01** | 場内図の `data-site-id` の集合と、区画データの ID 集合が完全一致すること。**描画結果と出荷 HTML の両方**で検査する。ソースを grep しても、ループで描いている以上は必ず一致して何も検証できない |
 | **G-05** | 空き状況モックの保存則・決定論・偏りの不在・需要の向き。作り物だからこそ、満たすべき性質を明示して縛る |
 | **G-12** | 出荷された `/reserve` がキーボードと読み上げで通せる形になっているか。label の対応・タブ順・`aria-describedby` の参照先 |
+| **G-13** | 文字色 × 背景色 × 両テーマの全組み合わせが WCAG AA(4.5:1)。目で決めた色を計算で検算する |
+| **G-14** | 施設の注記が、区画とも他の注記とも重ならないこと。**幾何の正しさと読めることは別の性質**で、前者のゲートは後者を守らない |
 
 **ゲートは落ちることを確かめて初めてゲートになる。** G-01 と G-12 はどちらも、
 わざと違反させて `exit 1` になることを確認してある。G-12 ではこの確認が実際に効いた ——
@@ -84,13 +86,15 @@ node scripts/gen-holidays.mjs   # 祝日表の再生成(原本を更新したと
 
 ```
 src/
-  app/          16 ルート(App Router)+ Route Handler /api/availability/[month]
+  app/          21 ルート(App Router・記事 5 本は MDX)+ Route Handler と OG 画像
+  content/      フィールドノートの一覧(記事本文は app/journal/<slug>/page.mdx)
   components/   骨格(ヘッダ・フッタ・ページ枠)と shell.css
   data/         地形 geo.ts / 区画 sites.ts / 料金 pricing.ts / 気温 climate.ts / 祝日 holidays.ts(生成物)
   lib/          幾何 geometry.ts / 投影 map-projection.ts / 絞り込み filters.ts / 空き availability.ts
                 カレンダー calendar.ts / 申込 reservation.ts / 料金計算 pricing.ts
                 営業期間 season.ts / ルート routes.ts
-tests/          幾何・料金・骨格・文字種・投影・場内図・空き状況・予約・季節表示の 9 本
+tests/          幾何・料金・骨格・文字種・投影・場内図・可読性・空き状況・予約・季節表示・
+                メタデータ・コントラストの 12 本
 data/           外部データの原本(内閣府 祝日 CSV)
 logs/loops/     ループログ
 ```
@@ -105,7 +109,7 @@ logs/loops/     ループログ
 | L1 | 設定確定・雛形・デザイントークン・全 15 ルートの骨格・幾何と料金のゲート | 完了 |
 | L2 | 場内図 SVG・絞り込み・空き状況の反映(G-01 / G-05) | 完了 |
 | L3 | 予約フォーム(Server Actions + zod)・空きカレンダー・オフシーズン表示・Route Handler(ISR) | 完了 |
-| L4 | アクティビティ本文・MDX ジャーナル・OG 画像・JSON-LD・Lighthouse・本番公開 | — |
+| L4 | 仕上げ — MDX ジャーナル・OG 画像・JSON-LD・sitemap・配色のコントラスト・本番公開 | 完了 |
 
 ## ライセンス
 

@@ -79,7 +79,9 @@ describe("G-07: 内部リンクの健全性", () => {
       if (entry.startsWith("_") || entry.startsWith("(")) continue;
       const segment = entry.startsWith("[") ? `:${entry.slice(1, -1)}` : entry;
       const path = `${prefix}/${segment}`;
-      if (readdirSync(full).includes("page.tsx")) found.push(path);
+      const entries = readdirSync(full);
+      // MDX のルートセグメント(フィールドノートの記事)も同じルートである
+      if (entries.includes("page.tsx") || entries.includes("page.mdx")) found.push(path);
       found.push(...discoverRoutes(full, path));
     }
     return found;

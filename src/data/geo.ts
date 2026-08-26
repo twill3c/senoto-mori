@@ -52,13 +52,15 @@ export interface Facility {
 }
 
 export const FACILITIES: readonly Facility[] = [
-  { id: "kanri", label: "管理棟・受付", at: { x: 210, y: 32 } },
-  { id: "suiji-mori", label: "炊事場(森)", at: { x: 175, y: 118 } },
-  { id: "suiji-hara", label: "炊事場(草原)", at: { x: 255, y: 292 } },
-  { id: "toilet-mori", label: "トイレ(森)", at: { x: 120, y: 120 } },
-  { id: "toilet-hara", label: "トイレ(草原)", at: { x: 300, y: 292 } },
-  { id: "kama", label: "石窯ピザ小屋", at: { x: 262, y: 40 } },
-  { id: "parking", label: "共同駐車場", at: { x: 60, y: 22 } },
-  { id: "mtb", label: "MTB トレイル入口", at: { x: 36, y: 168 } },
-  { id: "hiroba", label: "焚火学舎ひろば", at: { x: 240, y: 40 } },
+  // 配置は T-108 が縛っている。注記の文字が占める幅まで含めて、
+  // 区画とも他の注記とも重ならないこと。座標を動かしたらテストが教えてくれる
+  { id: "parking", label: "共同駐車場", at: { x: 26, y: 30 } },
+  { id: "kanri", label: "管理棟・受付", at: { x: 24, y: 78 } },
+  { id: "mtb", label: "MTB トレイル入口", at: { x: 26, y: 205 } },
+  { id: "kama", label: "石窯ピザ小屋", at: { x: 96, y: 34 } },
+  { id: "hiroba", label: "焚火学舎ひろば", at: { x: 236, y: 36 } },
+  { id: "toilet-mori", label: "トイレ(森)", at: { x: 158, y: 85 } },
+  { id: "suiji-mori", label: "炊事場(森)", at: { x: 158, y: 135 } },
+  { id: "suiji-hara", label: "炊事場(草原)", at: { x: 150, y: 292 } },
+  { id: "toilet-hara", label: "トイレ(草原)", at: { x: 262, y: 292 } },
 ] as const;

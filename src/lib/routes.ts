@@ -1,3 +1,5 @@
+import { journalRoutes } from "@/content/journal";
+
 // サイトのページ一覧(G-07)。ここが唯一の正本で、ナビも sitemap もここを読む。
 // テスト T-060 が、この宣言と src/app 以下に実在する page.tsx を突き合わせる。
 
@@ -10,7 +12,7 @@ export interface Route {
   group: "top" | "stay" | "play" | "plan" | "about";
 }
 
-export const ROUTES: readonly Route[] = [
+const STATIC_ROUTES: readonly Route[] = [
   {
     path: "/",
     title: "瀬音の杜",
@@ -108,6 +110,9 @@ export const ROUTES: readonly Route[] = [
     group: "about",
   },
 ] as const;
+
+/** 静的なページに、フィールドノートの記事を足したものが正本(G-07) */
+export const ROUTES: readonly Route[] = [...STATIC_ROUTES, ...journalRoutes()];
 
 export interface NavItem {
   href: string;

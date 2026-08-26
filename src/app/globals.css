@@ -9,18 +9,18 @@
   --bg-sunk: #f1ece3;
   --ink: #23281f;
   --ink-soft: #5c6357;
-  --ink-faint: #8a9081;
+  --ink-faint: #646a5b;
   --border: #ddd5c8;
   --border-strong: #c3b8a6;
 
   --forest: #2f4538;
   --river: #4a6572;
   --meadow: #a89658;
-  --ember: #b4531f;
+  --ember: #a94a17;
 
   --ok: #3f6b47;
-  --warn: #9a6b1e;
-  --full: #8d8577;
+  --warn: #856011;
+  --full: #6b6659;
 
   --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
     "Source Han Serif JP", serif;
@@ -39,7 +39,7 @@
     --bg-sunk: #0d100b;
     --ink: #e9e5db;
     --ink-soft: #a9ac9e;
-    --ink-faint: #7b7f72;
+    --ink-faint: #949a8c;
     --border: #333a2e;
     --border-strong: #4a5342;
 
@@ -50,7 +50,7 @@
 
     --ok: #7fae86;
     --warn: #cfa557;
-    --full: #6f6c63;
+    --full: #95928a;
   }
 }
 
@@ -193,4 +193,18 @@ body {
   body {
     padding-bottom: 108px;
   }
+}
+
+/* 目には出さないが読み上げには渡す。aria-label で名前ごと差し替えるより、
+   見えている文字を残したまま文脈を足すほうが、音声操作と噛み合う */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
 }

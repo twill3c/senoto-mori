@@ -164,7 +164,12 @@
   color: var(--full);
 }
 
+.cal__legend span[data-peak="true"] {
+  text-decoration: underline;
+  text-decoration-color: var(--ember);
+  text-underline-offset: 0.2em;
+}
+
 .cal__legend span[data-peak="true"]::before {
-  content: "_ ";
-  color: var(--ember);
+  content: none;
 }

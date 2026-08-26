@@ -4,6 +4,7 @@ import { notFound } from "next/navigation";
 import { Page } from "@/components/Page";
 import { PITCH_FEE } from "@/data/pricing";
 import { SITE_TYPES, pitchesOfType, type SiteType } from "@/data/sites";
+import { ogUrl } from "@/lib/og";
 import { formatYen } from "@/lib/pricing";
 
 const SLUGS = Object.keys(SITE_TYPES) as SiteType[];
@@ -23,7 +24,13 @@ export async function generateMetadata({
 }): Promise<Metadata> {
   const { slug } = await params;
   const t = metaOf(slug);
-  return t ? { title: t.name, description: t.lede } : {};
+  return t
+    ? {
+        title: t.name,
+        description: t.lede,
+        openGraph: { images: [ogUrl({ kind: "pitch", slug })] },
+      }
+    : {};
 }
 
 export default async function PitchTypePage({

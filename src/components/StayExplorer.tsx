@@ -111,6 +111,12 @@ export function StayExplorer({ year }: { year: number }) {
           : `該当 ${matched.size} / ${PITCHES.length} 区画`}
         {availability && ` ／ この日の空き ${availability.open} 区画`}
       </p>
+      {keys.length > 0 && matched.size === 0 && (
+        <p className="explorer__none" role="status">
+          この組み合わせに当てはまる区画はありません。直火が許されているのは焚火学舎だけで、
+          そこは川からも車からも離れています。条件をひとつ外してみてください。
+        </p>
+      )}
 
       <div className="explorer__body">
         {/* biome-ignore lint/a11y/useKeyWithClickEvents: 委譲先の区画が role="button" と tabIndex を持ち、キーボードは onKeyDown で拾っている */}
@@ -136,6 +142,13 @@ export function StayExplorer({ year }: { year: number }) {
         </div>
 
         <aside className="explorer__pane" aria-live="polite">
+          <p className="explorer__legend">
+            {TYPE_ORDER.map((slug) => (
+              <span key={slug} data-type={slug}>
+                {SITE_TYPES[slug].name}
+              </span>
+            ))}
+          </p>
           {pitch ? (
             <>
               <p className="card__meta">{SITE_TYPES[pitch.type].name}</p>

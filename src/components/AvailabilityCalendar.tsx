@@ -68,9 +68,12 @@ export function AvailabilityCalendar({
         </p>
       )}
 
-      <div className="cal__grid" role="grid" aria-label={`${monthLabel(month.key)} の空き状況`}>
+      {/* role="grid" は行(role="row")の入れ子を要求する。CSS の一次元グリッドに
+          その役割を被せると、支援技術には壊れた表として渡る(loop_004 で Lighthouse が指摘)。
+          日付は各ボタンの読み上げ名が持っているので、ここは素のボタンの並びにする */}
+      <div className="cal__grid" aria-label={`${monthLabel(month.key)} の空き状況`}>
         {WEEKDAYS.map((w) => (
-          <div key={w} className="cal__weekday" role="columnheader">
+          <div key={w} className="cal__weekday" aria-hidden="true">
             {w}
           </div>
         ))}
@@ -81,7 +84,7 @@ export function AvailabilityCalendar({
           const day = Number(d.dateISO.slice(-2));
           if (!d.selectable || d.open === null) {
             return (
-              <div key={d.dateISO} className="cal__day cal__day--closed" role="gridcell">
+              <div key={d.dateISO} className="cal__day cal__day--closed">
                 <span className="cal__num">{day}</span>
                 <span className="cal__mark">閉場</span>
               </div>
@@ -91,16 +94,20 @@ export function AvailabilityCalendar({
             <button
               key={d.dateISO}
               type="button"
-              role="gridcell"
               className="cal__day"
               data-density={density(d.open)}
               data-peak={d.peak ? "true" : "false"}
               aria-pressed={selected === d.dateISO}
-              aria-label={`${d.dateISO} 空き ${d.open} 区画${d.peak ? " 繁忙期" : ""}`}
               onClick={() => onSelect(d.dateISO)}
             >
               <span className="cal__num">{day}</span>
               <span className="cal__mark">{d.open === 0 ? "満" : `空 ${d.open}`}</span>
+              {/* aria-label で名前を上書きすると、目に見えている文字と読み上げ名が
+                  食い違い、音声で操作する人が見えている語で指示できなくなる。
+                  見えている文字を残したまま、続きとして文脈を足す */}
+              <span className="visually-hidden">
+                {` ${d.dateISO}${d.peak ? " 繁忙期" : ""}`}
+              </span>
             </button>
           );
         })}

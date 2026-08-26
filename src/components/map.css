@@ -74,6 +74,38 @@
   user-select: none;
 }
 
+/* 日付を選ぶ前は、区画タイプで塗り分ける。
+   下 2 桁のラベルだけでは SE-05 と KO-05 が図の上で見分けられない(T-109) */
+.gmap__pitch[data-status="unknown"][data-type="seoto"] .gmap__pitch-rect {
+  fill: var(--river);
+  stroke: var(--river);
+}
+
+.gmap__pitch[data-status="unknown"][data-type="komore"] .gmap__pitch-rect {
+  fill: var(--forest);
+  stroke: var(--forest);
+}
+
+.gmap__pitch[data-status="unknown"][data-type="hidamari"] .gmap__pitch-rect {
+  fill: var(--meadow);
+  stroke: var(--meadow);
+}
+
+.gmap__pitch[data-status="unknown"][data-type="solo"] .gmap__pitch-rect {
+  fill: var(--bg-raised);
+  stroke: var(--ink-soft);
+  stroke-dasharray: 2 1.5;
+}
+
+.gmap__pitch[data-status="unknown"][data-type="takibi"] .gmap__pitch-rect {
+  fill: var(--ember);
+  stroke: var(--ember);
+}
+
+.gmap__pitch[data-status="unknown"]:not([data-type="solo"]) .gmap__pitch-label {
+  fill: var(--bg-raised);
+}
+
 .gmap__pitch[data-status="open"] .gmap__pitch-rect {
   fill: var(--ok);
   stroke: var(--ok);
