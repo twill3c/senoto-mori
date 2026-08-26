@@ -1,0 +1,196 @@
+/* 瀬音の杜 — デザイントークン。
+   色はすべてここで定義し、コンポーネント側は var() でしか参照しない(N-05 / G-09)。
+   土地の三要素を色にしている: 渓流の青灰、杉の深緑、草原の枯草色。
+   差し色は石窯の熾火のオレンジ一色だけに絞る。 */
+
+:root {
+  --bg: #faf7f2;
+  --bg-raised: #ffffff;
+  --bg-sunk: #f1ece3;
+  --ink: #23281f;
+  --ink-soft: #5c6357;
+  --ink-faint: #8a9081;
+  --border: #ddd5c8;
+  --border-strong: #c3b8a6;
+
+  --forest: #2f4538;
+  --river: #4a6572;
+  --meadow: #a89658;
+  --ember: #b4531f;
+
+  --ok: #3f6b47;
+  --warn: #9a6b1e;
+  --full: #8d8577;
+
+  --font-serif: "Hiragino Mincho ProN", "Yu Mincho", "YuMincho", "Noto Serif JP",
+    "Source Han Serif JP", serif;
+  --font-sans: system-ui, -apple-system, "Hiragino Sans", "Yu Gothic UI",
+    "Noto Sans JP", sans-serif;
+
+  --measure: 34rem;
+  --gutter: clamp(1rem, 4vw, 2.5rem);
+  --radius: 2px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #12150f;
+    --bg-raised: #1b1f18;
+    --bg-sunk: #0d100b;
+    --ink: #e9e5db;
+    --ink-soft: #a9ac9e;
+    --ink-faint: #7b7f72;
+    --border: #333a2e;
+    --border-strong: #4a5342;
+
+    --forest: #93b09a;
+    --river: #93b3c0;
+    --meadow: #cfbb7e;
+    --ember: #e38b52;
+
+    --ok: #7fae86;
+    --warn: #cfa557;
+    --full: #6f6c63;
+  }
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  color-scheme: light dark;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-sans);
+  font-size: 16px;
+  line-height: 1.85;
+  letter-spacing: 0.02em;
+  -webkit-font-smoothing: antialiased;
+}
+
+h1,
+h2,
+h3 {
+  font-family: var(--font-serif);
+  font-weight: 500;
+  line-height: 1.5;
+  letter-spacing: 0.04em;
+}
+
+h1 {
+  font-size: clamp(1.6rem, 4.5vw, 2.4rem);
+  margin: 0 0 0.6em;
+}
+
+h2 {
+  font-size: 1.3rem;
+  margin: 2.6em 0 0.8em;
+  padding-bottom: 0.4em;
+  border-bottom: 1px solid var(--border);
+}
+
+h3 {
+  font-size: 1.06rem;
+  margin: 2em 0 0.5em;
+}
+
+p {
+  margin: 0 0 1.2em;
+}
+
+a {
+  color: inherit;
+  text-underline-offset: 0.25em;
+  text-decoration-color: var(--border-strong);
+}
+
+a:hover {
+  text-decoration-color: var(--ember);
+}
+
+:focus-visible {
+  outline: 2px solid var(--ember);
+  outline-offset: 3px;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.92rem;
+  line-height: 1.6;
+}
+
+th,
+td {
+  padding: 0.6em 0.7em;
+  border-bottom: 1px solid var(--border);
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  font-weight: 500;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+td.num,
+th.num {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 横に広い表は、ページ本体でなく表自身がスクロールする */
+.scroll-x {
+  overflow-x: auto;
+  -webkit-overflow-scrolling: touch;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.88em;
+  background: var(--bg-sunk);
+  padding: 0.1em 0.35em;
+  border-radius: var(--radius);
+}
+
+/* N-03: 動きを減らす設定を尊重する */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}
+
+/* fleet: fixed footer */
+.footer {
+  position: fixed;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 9000;
+  margin: 0;
+  padding: 8px 16px;
+  background: var(--bg);
+  border-top: 1px solid var(--border);
+  backdrop-filter: blur(6px);
+  max-height: 30vh;
+  overflow-y: auto;
+}
+body {
+  padding-bottom: 84px;
+}
+@media (max-width: 640px) {
+  body {
+    padding-bottom: 108px;
+  }
+}
