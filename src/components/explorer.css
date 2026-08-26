@@ -1,0 +1,172 @@
+/* 場内図まわりの操作系。色は globals.css のトークン経由(G-09) */
+
+.explorer {
+  margin: 0 0 2.5rem;
+}
+
+.explorer__controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem 2rem;
+  align-items: flex-start;
+  padding: 1rem 1.1rem;
+  border: 1px solid var(--border);
+  background: var(--bg-raised);
+}
+
+.explorer__field label {
+  display: block;
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  margin-bottom: 0.35em;
+}
+
+.explorer__field input[type="date"] {
+  font: inherit;
+  font-size: 0.94rem;
+  padding: 0.4em 0.6em;
+  background: var(--bg);
+  color: var(--ink);
+  border: 1px solid var(--border-strong);
+  border-radius: var(--radius);
+}
+
+.explorer__hint {
+  margin: 0.5em 0 0;
+  font-size: 0.78rem;
+  color: var(--ink-faint);
+  max-width: 22rem;
+}
+
+.explorer__filters {
+  border: 0;
+  padding: 0;
+  margin: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.45rem;
+  align-items: center;
+}
+
+.explorer__filters legend {
+  font-size: 0.78rem;
+  letter-spacing: 0.1em;
+  color: var(--ink-soft);
+  padding: 0;
+  margin-bottom: 0.35em;
+}
+
+.explorer__chip {
+  font: inherit;
+  font-size: 0.84rem;
+  line-height: 1.4;
+  padding: 0.35em 0.85em;
+  border: 1px solid var(--border-strong);
+  border-radius: 999px;
+  background: var(--bg);
+  color: var(--ink-soft);
+  cursor: pointer;
+  transition: background 120ms ease, color 120ms ease, border-color 120ms ease;
+}
+
+.explorer__chip:hover {
+  border-color: var(--ember);
+  color: var(--ink);
+}
+
+.explorer__chip[aria-pressed="true"] {
+  background: var(--ember);
+  border-color: var(--ember);
+  color: var(--bg-raised);
+}
+
+.explorer__clear {
+  font: inherit;
+  font-size: 0.8rem;
+  padding: 0.3em 0.7em;
+  background: none;
+  border: 0;
+  border-bottom: 1px solid var(--border-strong);
+  color: var(--ink-soft);
+  cursor: pointer;
+}
+
+.explorer__clear:hover {
+  color: var(--ember);
+  border-bottom-color: var(--ember);
+}
+
+.explorer__count {
+  margin: 0.9em 0 0.6em;
+  font-size: 0.84rem;
+  color: var(--ink-soft);
+  font-variant-numeric: tabular-nums;
+}
+
+.explorer__body {
+  display: grid;
+  gap: 1px;
+  background: var(--border);
+  border: 1px solid var(--border);
+  grid-template-columns: minmax(0, 1fr);
+}
+
+@media (min-width: 60rem) {
+  .explorer__body {
+    grid-template-columns: minmax(0, 1fr) 19rem;
+  }
+}
+
+.explorer__map {
+  background: var(--bg-raised);
+  padding: 0.6rem;
+  min-width: 0;
+}
+
+.explorer__pane {
+  background: var(--bg-raised);
+  padding: 1.1rem 1.2rem 1.4rem;
+  font-size: 0.88rem;
+  line-height: 1.75;
+}
+
+.explorer__pane-title {
+  font-family: var(--font-serif);
+  font-size: 1.2rem;
+  margin: 0 0 0.4em;
+}
+
+.explorer__pane-note {
+  color: var(--ink-soft);
+  margin: 0 0 1em;
+}
+
+.explorer__dl {
+  display: grid;
+  grid-template-columns: 6.2rem minmax(0, 1fr);
+  gap: 0.15em 0.8em;
+  margin: 0 0 1em;
+  font-size: 0.84rem;
+}
+
+.explorer__dl dt {
+  color: var(--ink-faint);
+}
+
+.explorer__dl dd {
+  margin: 0;
+}
+
+.explorer__caveat {
+  font-size: 0.8rem;
+  color: var(--ink-soft);
+  border-top: 1px dashed var(--border-strong);
+  padding-top: 0.7em;
+  margin: 0 0 1em;
+}
+
+.explorer__empty {
+  color: var(--ink-faint);
+  margin: 0;
+}

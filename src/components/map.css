@@ -1,0 +1,129 @@
+/* 場内図。色はすべて globals.css のトークン経由(G-09) */
+
+.gmap {
+  display: block;
+  width: 100%;
+  height: auto;
+  max-height: 72vh;
+  background: var(--bg-sunk);
+  border: 1px solid var(--border);
+  touch-action: manipulation;
+}
+
+.gmap__meadow {
+  fill: var(--meadow);
+  opacity: 0.32;
+}
+
+.gmap__forest {
+  fill: var(--forest);
+  opacity: 0.34;
+}
+
+.gmap__boundary {
+  fill: none;
+  stroke: var(--border-strong);
+  stroke-width: 1.4;
+  stroke-dasharray: 6 4;
+}
+
+.gmap__river {
+  fill: none;
+  stroke: var(--river);
+  stroke-width: 7;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  opacity: 0.85;
+}
+
+.gmap__facility-dot {
+  fill: var(--ink-faint);
+}
+
+.gmap__facility-label {
+  fill: var(--ink-soft);
+  font-size: 8px;
+  font-family: var(--font-sans);
+  letter-spacing: 0.04em;
+}
+
+.gmap__compass-label {
+  fill: var(--ink-faint);
+  font-size: 10px;
+  font-family: var(--font-serif);
+}
+
+/* 区画 —— 状態は data-* が持ち、見た目はここだけが決める */
+.gmap__pitch {
+  cursor: pointer;
+}
+
+.gmap__pitch-rect {
+  fill: var(--bg-raised);
+  stroke: var(--ink-soft);
+  stroke-width: 0.8;
+  transition: fill 120ms ease, stroke-width 120ms ease, opacity 120ms ease;
+}
+
+.gmap__pitch-label {
+  fill: var(--ink-soft);
+  font-size: 5px;
+  font-family: var(--font-sans);
+  text-anchor: middle;
+  pointer-events: none;
+  user-select: none;
+}
+
+.gmap__pitch[data-status="open"] .gmap__pitch-rect {
+  fill: var(--ok);
+  stroke: var(--ok);
+}
+
+.gmap__pitch[data-status="open"] .gmap__pitch-label {
+  fill: var(--bg-raised);
+}
+
+.gmap__pitch[data-status="booked"] .gmap__pitch-rect {
+  fill: var(--full);
+  stroke: var(--full);
+  opacity: 0.55;
+}
+
+.gmap__pitch[data-status="booked"] .gmap__pitch-label {
+  fill: var(--bg-raised);
+}
+
+/* 絞り込みから外れた区画は沈める。消さないのは、周りとの位置関係を残すため */
+.gmap__pitch[data-dim="true"] {
+  opacity: 0.22;
+}
+
+.gmap__pitch[data-dim="true"] .gmap__pitch-label {
+  display: none;
+}
+
+.gmap__pitch[data-selected="true"] .gmap__pitch-rect {
+  stroke: var(--ember);
+  stroke-width: 2.4;
+}
+
+.gmap__pitch:hover .gmap__pitch-rect {
+  stroke: var(--ember);
+  stroke-width: 1.8;
+}
+
+.gmap__pitch:focus-visible {
+  outline: none;
+}
+
+.gmap__pitch:focus-visible .gmap__pitch-rect {
+  stroke: var(--ember);
+  stroke-width: 2.4;
+  paint-order: stroke;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .gmap__pitch-rect {
+    transition: none;
+  }
+}

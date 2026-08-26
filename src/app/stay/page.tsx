@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { Page } from "@/components/Page";
+import { StayExplorer } from "@/components/StayExplorer";
 import { PITCHES, SITE_TYPES, type SiteType } from "@/data/sites";
 import { routeOf } from "@/lib/routes";
 
@@ -23,11 +24,7 @@ function marks(p: (typeof PITCHES)[number]): string {
 export default function StayPage() {
   return (
     <Page title="泊まる" lede={route?.lede}>
-      <div className="notice">
-        <strong>場内図は次の更新で入ります。</strong>{" "}
-        区画をクリックして詳細と空き状況を見られる図を用意しています。
-        それまでは下の一覧で、川からの距離と地面をご確認ください。
-      </div>
+      <StayExplorer year={2026} />
 
       <div className="cards">
         {TYPE_ORDER.map((slug) => {
@@ -45,6 +42,9 @@ export default function StayPage() {
       </div>
 
       <h2>全 {PITCHES.length} 区画</h2>
+      <p className="prose">
+        図を使わずに見比べたい方へ。並びは場内の南から北の順です。
+      </p>
       <div className="scroll-x">
         <table>
           <thead>

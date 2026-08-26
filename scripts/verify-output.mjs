@@ -3,7 +3,7 @@
 // 挟むなど独自の癖があるので、出荷される形そのものを見ないと確認したことにならない。
 //   npm run build && node scripts/verify-output.mjs
 import { readFileSync, readdirSync, statSync } from "node:fs";
-import { join } from "node:path";
+import { join, sep } from "node:path";
 
 const DIR = ".next/server/app";
 const LABELS = ["MIT License", "GitHub", "瀬音の杜の歩き方", "瀬音の杜 設計図", "App Menu"];
@@ -50,8 +50,34 @@ for (const f of files) {
   if (!html.includes("架空")) failures.push(`${f}: 架空である旨の注記が無い`);
 }
 
+// G-01: 出荷された /stay の場内図に、区画データの ID が過不足なく載っているか。
+// 区画 ID は TS を通さず src/data/sites.ts の実テキストから拾う。
+// 描画経路とは別の道から取ることで、両者が独立した二つの記述になる。
+const sitesSrc = readFileSync("src/data/sites.ts", "utf8");
+const dataIds = new Set([...sitesSrc.matchAll(/^\s*\{ id: "([A-Z]{2}-\d{2})"/gm)].map((m) => m[1]));
+const stay = files.find((f) => f.endsWith(`stay${sep}index.html`) || f.endsWith(`${sep}stay.html`));
+if (!stay) {
+  failures.push("/stay の出荷 HTML が見つからない");
+} else if (dataIds.size === 0) {
+  failures.push("src/data/sites.ts から区画 ID を 1 件も拾えなかった(検査が空振りしている)");
+} else {
+  const html = readFileSync(stay, "utf8");
+  const inHtml = new Set([...html.matchAll(/data-site-id="([^"]+)"/g)].map((m) => m[1]));
+  const missing = [...dataIds].filter((id) => !inHtml.has(id));
+  const extra = [...inHtml].filter((id) => !dataIds.has(id));
+  if (missing.length) failures.push(`/stay の図に無い区画: ${missing.join(",")}`);
+  if (extra.length) failures.push(`区画データに無い ID が図にある: ${extra.join(",")}`);
+
+  // 地形と、JS 無しでも読める全区画表が出荷に含まれていること(N-06)
+  for (const id of ["ground-boundary", "ground-forest", "ground-meadow", "ground-river"]) {
+    if (!html.includes(`id="${id}"`)) failures.push(`/stay に地形 ${id} が無い`);
+  }
+  if (!html.includes("<table")) failures.push("/stay に JS 無しでも読める区画表が無い(N-06)");
+}
+
 if (failures.length) {
   console.error(`不合格 ${failures.length} 件:\n${failures.map((l) => `  - ${l}`).join("\n")}`);
   process.exit(1);
 }
 console.log(`出荷 HTML ${files.length} 件 — フッタ・並び・架空注記すべて合格`);
+console.log(`/stay の場内図 — 区画 ${dataIds.size} 件が過不足なく出荷されている(G-01)`);
