@@ -6,7 +6,7 @@ Web サイト制作のポートフォリオとしてつくっています。
 > **この施設は実在しません。** 予約は成立せず、掲載している所在地・料金・区画・お知らせは
 > すべて架空です。フッタ・`/about`・`/reserve` の三か所に同じ注記を置いています。
 
-本番: https://senoto-mori.vercel.app(**公開待ち** — Vercel の日次デプロイ上限に当たったため 2026-08-28 以降に反映)／ 設計の正本: [SPEC.md](SPEC.md) ／ 検証の正本: [TEST_SPEC.md](TEST_SPEC.md)
+本番: https://senoto-mori.vercel.app ／ 設計の正本: [SPEC.md](SPEC.md) ／ 検証の正本: [TEST_SPEC.md](TEST_SPEC.md)
 
 ## 何をしているサイトか
 
@@ -110,6 +110,13 @@ logs/loops/     ループログ
 | L2 | 場内図 SVG・絞り込み・空き状況の反映(G-01 / G-05) | 完了 |
 | L3 | 予約フォーム(Server Actions + zod)・空きカレンダー・オフシーズン表示・Route Handler(ISR) | 完了 |
 | L4 | 仕上げ — MDX ジャーナル・OG 画像・JSON-LD・sitemap・配色のコントラスト・本番公開 | 完了 |
+
+## 実測(2026-08-27・本番)
+
+Lighthouse はアクセシビリティ・ベストプラクティス・SEO が全ページ 100。
+パフォーマンスは `/guide` 100 / `/stay` 97 / `/reserve` 95 / `/` 89–94 で、
+測定ごとの振れが大きい(トップを 3 回続けて測って 94 / 91 / 61)。
+詳細と、L4 で書いた誤った診断の取り消しは [SPEC §4.1](SPEC.md) に残してある。
 
 ## ライセンス
 
