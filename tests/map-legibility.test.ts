@@ -23,8 +23,8 @@ describe("T-108: 施設の注記が読める", () => {
 
   it("見積もりの前提が成立している(全角と半角で幅が変わる)", () => {
     // 前提を検算する(HC-004)。半角だけの文字列は同じ字数の全角より狭い
-    const wide = labelBox({ id: "x", label: "あいうえお", at: { x: 0, y: 0 } });
-    const narrow = labelBox({ id: "x", label: "abcde", at: { x: 0, y: 0 } });
+    const wide = labelBox({ label: "あいうえお", at: { x: 0, y: 0 } });
+    const narrow = labelBox({ label: "abcde", at: { x: 0, y: 0 } });
     expect(narrow.w).toBeLessThan(wide.w);
     expect(wide.h).toBeCloseTo(FACILITY_LABEL.fontSize * 1.25, 6);
   });

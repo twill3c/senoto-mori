@@ -73,7 +73,7 @@ export const SITE_TYPES: Record<SiteType, SiteTypeMeta> = {
     ground: "落葉と土",
     lede: "森の西端に一列。隣とは樹林で仕切られ、車は共同駐車場に置いて歩いて入ります。",
     caveat:
-      "駐車場から最も遠い区画で 120 m ほど歩きます。荷車の貸し出しはありますが、台数に限りがあります。",
+      "駐車場から最も遠い区画で 250 m ほど歩きます。荷車の貸し出しはありますが、台数に限りがあります。",
   },
   takibi: {
     slug: "takibi",
@@ -113,28 +113,28 @@ export const PITCHES: readonly Pitch[] = [
 
   // 陽だまりサイト — 北東の草原。二列
   { id: "HI-01", type: "hidamari", rect: { x: 175, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "草原の西端。森が風よけになる" },
-  { id: "HI-02", type: "hidamari", rect: { x: 220, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "炊事場が正面。子ども連れに案内している" },
+  { id: "HI-02", type: "hidamari", rect: { x: 220, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "まわりが開けていて子どもに目が届く。子ども連れに案内している" },
   { id: "HI-03", type: "hidamari", rect: { x: 265, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "芝が最も密。設営が楽" },
-  { id: "HI-04", type: "hidamari", rect: { x: 310, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "南に八ヶ岳。日中の眺めがよい" },
+  { id: "HI-04", type: "hidamari", rect: { x: 310, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "北に八ヶ岳の稜線。日中の眺めがよい" },
   { id: "HI-05", type: "hidamari", rect: { x: 355, y: 260, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "川の音が遠くに聞こえる。岸へは 40 m ほど" },
-  { id: "HI-06", type: "hidamari", rect: { x: 175, y: 320, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "北列の西端。風が最も強く当たる" },
+  { id: "HI-06", type: "hidamari", rect: { x: 175, y: 320, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "北列の西端。炊事場がいちばん近いが、風も最も強く当たる" },
   { id: "HI-07", type: "hidamari", rect: { x: 220, y: 320, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "場内でいちばん暗く、星がよく見える" },
   { id: "HI-08", type: "hidamari", rect: { x: 265, y: 320, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "地面がわずかに北へ傾く" },
   { id: "HI-09", type: "hidamari", rect: { x: 310, y: 320, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "朝、草原に霧が溜まるのを正面から見られる" },
   { id: "HI-10", type: "hidamari", rect: { x: 355, y: 320, w: 12, h: 10 }, riverside: false, meadow: true, ac: false, openFire: false, driveIn: true, note: "北東の角。隣が片側だけの区画" },
 
   // ソロの間 — 森の西端に縦一列。車は共同駐車場
-  { id: "SO-01", type: "solo", rect: { x: 70, y: 50, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "駐車場から最短。歩いて 30 秒" },
+  { id: "SO-01", type: "solo", rect: { x: 70, y: 50, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "駐車場から最短。歩いて 1 分" },
   { id: "SO-02", type: "solo", rect: { x: 70, y: 95, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "トイレが近い" },
   { id: "SO-03", type: "solo", rect: { x: 70, y: 140, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "三方を樹林に囲まれ、隣が見えない" },
   { id: "SO-04", type: "solo", rect: { x: 70, y: 185, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "MTB トレイル入口の真横" },
   { id: "SO-05", type: "solo", rect: { x: 70, y: 230, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "森の奥。物音がいちばん少ない" },
-  { id: "SO-06", type: "solo", rect: { x: 70, y: 275, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "最も遠く、駐車場から 120 m。荷車の貸し出しあり" },
+  { id: "SO-06", type: "solo", rect: { x: 70, y: 275, w: 7, h: 7 }, riverside: false, meadow: false, ac: false, openFire: false, driveIn: false, note: "最も遠く、駐車場から 250 m。荷車の貸し出しあり" },
 
   // 焚火学舎 — 南の一角。直火可・講習受講が条件
-  { id: "TA-01", type: "takibi", rect: { x: 150, y: 15, w: 10, h: 10 }, riverside: false, meadow: false, ac: false, openFire: true, driveIn: false, note: "炉が最も大きい。初日の講習はここで行う" },
+  { id: "TA-01", type: "takibi", rect: { x: 150, y: 15, w: 10, h: 10 }, riverside: false, meadow: false, ac: false, openFire: true, driveIn: false, note: "炉が最も大きく、石窯小屋にもいちばん近い。初日の講習はここで行う" },
   { id: "TA-02", type: "takibi", rect: { x: 210, y: 15, w: 10, h: 10 }, riverside: false, meadow: false, ac: false, openFire: true, driveIn: false, note: "薪棚が隣。受講者は持ち出し自由" },
-  { id: "TA-03", type: "takibi", rect: { x: 270, y: 15, w: 10, h: 10 }, riverside: false, meadow: false, ac: false, openFire: true, driveIn: false, note: "石窯小屋に近く、熾火を分けてもらえる" },
+  { id: "TA-03", type: "takibi", rect: { x: 270, y: 15, w: 10, h: 10 }, riverside: false, meadow: false, ac: false, openFire: true, driveIn: false, note: "石囲いが低く、五徳を据えやすい。熾火は石窯小屋から分けてもらえる" },
   { id: "TA-04", type: "takibi", rect: { x: 330, y: 15, w: 10, h: 10 }, riverside: false, meadow: false, ac: false, openFire: true, driveIn: false, note: "東端。倒木の伐り出し場へ最短" },
 ] as const;
 
