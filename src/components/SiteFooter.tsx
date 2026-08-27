@@ -12,6 +12,8 @@ export function SiteFooter() {
             <a href={l.href} target="_blank" rel="noreferrer">
               {l.label}
             </a>
+            {/* 著作権表示はリンクの外に置く(規約: MIT License © 2026 坂田哲朗 ・ …) */}
+            {i === 0 && " © 2026 坂田哲朗"}
           </span>
         ))}
         <p className="footer__fiction">
